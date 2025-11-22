@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Chat de Apoio Emocional</title>
+</head>
+<body>
+
+<h1>Chat de Apoio</h1>
+
+<form th:action="@{/chat/enviar}" method="post">
+  <input type="text" name="msg" placeholder="Sua mensagem..." required>
+  <button type="submit">Enviar</button>
+</form>
+
+<br>
+
+<div th:if="${mensagem}">
+  <h3>Você:</h3>
+  <p th:text="${mensagem}"></p>
+</div>
+
+<div th:if="${resposta}">
+  <h3>Assistente:</h3>
+  <p th:text="${resposta}"></p>
+</div>
+
+<br>
+<a href="/questionario">Voltar ao questionário</a>
+<br>
+<a href="/">Voltar à Home</a>
+
+</body>
+</html>
