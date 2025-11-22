@@ -1,6 +1,6 @@
-package br.com.fiap.chatia.model;
+package br.com.fiap.chatia.service;
 
-import br.com.fiap.chatia.service.QuestionarioRequest;
+import br.com.fiap.chatia.dto.request.QuestionarioRequest;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

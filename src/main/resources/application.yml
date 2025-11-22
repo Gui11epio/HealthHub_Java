@@ -1,7 +1,34 @@
 spring:
-  ai:
-    openai:
-      api-key: ${OPENAI_API_KEY}
-      chat:
-        options:
-          model: gpt-4o-mini
+  spring:
+    datasource:
+      url: jdbc:oracle:thin:@//oracle.fiap.com.br:1521/ORCL
+      username: ${db.user}
+      password: ${db.password}
+      driver-class-name: oracle.jdbc.OracleDriver
+
+    jpa:
+      show-sql: true
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          format_sql: true
+          dialect: org.hibernate.dialect.OracleDialect
+
+    thymeleaf:
+      cache: false
+
+    messages:
+      basename: i18n/messages
+      encoding: UTF-8
+
+    ai:
+      openai:
+        api-key: ${OPENAI_API_KEY}
+        chat:
+          options:
+            model: gpt-4o-mini
+
+  server:
+    port: 8080
+

@@ -1,4 +1,4 @@
-package br.com.fiap.chatia.model;
+package br.com.fiap.chatia.service;
 
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.beans.factory.annotation.Autowired;

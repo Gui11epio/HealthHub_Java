@@ -1,4 +1,4 @@
-package br.com.fiap.chatia.service;
+package br.com.fiap.chatia.dto.request;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;

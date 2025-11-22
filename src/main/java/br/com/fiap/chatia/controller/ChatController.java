@@ -1,6 +1,6 @@
 package br.com.fiap.chatia.controller;
 
-import br.com.fiap.chatia.model.ChatService;
+import br.com.fiap.chatia.service.ChatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

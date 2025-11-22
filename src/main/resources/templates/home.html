@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <title>Bem-vindo - Assistente de Bem-Estar</title>
-</head>
 <body>
 
-<h1>Bem-vindo ao Assistente de Bem-Estar</h1>
+<div th:fragment="content">
 
-<p>
-  Este sistema ajuda você a acompanhar seu estado emocional, analisando seu humor, estresse, ansiedade e sono.
-  Também conta com um chat de apoio onde você pode conversar sempre que quiser.
-</p>
+  <h1 th:text="#{app.title}"></h1>
 
-<h2>O que deseja fazer?</h2>
+  <p>
+    Este sistema ajuda você a acompanhar seu estado emocional, analisando seu humor, estresse, ansiedade e sono.
+  </p>
 
-<ul>
-  <li><a href="/questionario">📋 Preencher o Questionário Diário</a></li>
-  <br>
-  <li><a href="/chat">💬 Acessar o Chat de Apoio</a></li>
-</ul>
+  <h2>Escolha uma opção:</h2>
+
+  <ul>
+    <li><a class="button-link" th:href="@{/questionario}" th:text="#{question.title}"></a></li>
+    <br>
+    <li><a class="button-link" th:href="@{/auth/login}" th:text="#{nav.login}"></a></li>
+  </ul>
+
+</div>
 
 </body>
 </html>

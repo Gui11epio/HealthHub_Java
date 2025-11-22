@@ -1,10 +1,13 @@
 package br.com.fiap.chatia.controller;
 
-import br.com.fiap.chatia.model.QuestionarioService;
-import br.com.fiap.chatia.service.QuestionarioRequest;
+import br.com.fiap.chatia.dto.request.QuestionarioRequest;
+import br.com.fiap.chatia.dto.response.QuestionarioResponse;
+import br.com.fiap.chatia.service.QuestionarioService;
+import br.com.fiap.chatia.model.Questionario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,7 +21,7 @@ public class QuestionarController {
     // Exibe a página do formulário
     @GetMapping
     public String formulario(Model model) {
-        model.addAttribute("questionario", new QuestionarioRequest());
+        model.addAttribute("questionario", new Questionario());
         return "questionario";  // questionario.html
     }
 
@@ -26,10 +29,16 @@ public class QuestionarController {
     @PostMapping("/analisar")
     public String analisar(
             @Valid @ModelAttribute("questionario") QuestionarioRequest req,
-            Model model
-    ) {
-        String resultado = service.analisar(req);
-        model.addAttribute("resultado", resultado);
-        return "resultado"; // resultado.html
+            BindingResult result,
+            Model model) {
+
+        if (result.hasErrors()) {
+            return "questionario";
+        }
+
+        String respostaIA = service.analisar(req);
+        model.addAttribute("resultado", new QuestionarioResponse(respostaIA));
+
+        return "resultado";
     }
 }
