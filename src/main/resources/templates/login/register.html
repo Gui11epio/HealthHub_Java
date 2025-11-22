@@ -1,32 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head><title>Cadastro</title></head>
 <body>
 
-<div th:fragment="content">
+<h1>Cadastro</h1>
 
-  <h1 th:text="#{nav.register}"></h1>
+<form th:action="@{/auth/register}" th:object="${user}" method="post">
 
-  <form th:action="@{/auth/register}" th:object="${user}" method="post">
+  Nome: <input type="text" th:field="*{nome}"><br><br>
+  Email: <input type="email" th:field="*{email}"><br><br>
+  Senha: <input type="password" th:field="*{senha}"><br><br>
 
-    <label th:text="#{form.name}"></label><br>
-    <input type="text" th:field="*{nome}">
-    <br><br>
+  <button type="submit">Cadastrar</button>
+</form>
 
-    <label th:text="#{form.email}"></label><br>
-    <input type="email" th:field="*{email}">
-    <br><br>
+<p th:if="${erro}" th:text="${erro}" style="color:red"></p>
 
-    <label th:text="#{form.password}"></label><br>
-    <input type="password" th:field="*{senha}">
-    <br><br>
-
-    <button type="submit" th:text="#{form.submit}"></button>
-  </form>
-
-  <br>
-  <a th:href="@{/auth/login}" th:text="#{nav.login}"></a>
-
-</div>
+<br>
+<a href="/auth/login">Voltar ao Login</a>
 
 </body>
 </html>

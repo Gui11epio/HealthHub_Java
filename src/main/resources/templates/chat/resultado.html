@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Resultado da Análise</title>
+</head>
 <body>
 
-<div th:fragment="content">
+<h1>Resultado da Avaliação</h1>
 
-  <h1 th:text="#{result.title}"></h1>
-
-  <p th:text="${resultado.resultadoIA}"></p>
-
-  <br>
-  <a class="button-link" th:href="@{/questionario}" th:text="#{question.title}"></a>
-  <br><br>
-  <a class="button-link" th:href="@{/}" th:text="#{nav.home}"></a>
-
+<div>
+  <p th:text="${resultado}"></p>
 </div>
+
+<br>
+
+<a href="/questionario">Voltar ao questionário</a>
 
 </body>
 </html>
