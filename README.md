@@ -23,6 +23,15 @@
 O **HealthHub** é uma plataforma inovadora de suporte emocional e bem-estar que utiliza inteligência artificial para oferecer acolhimento e orientações personalizadas. Nosso objetivo é proporcionar um ambiente seguro e confidencial para que usuários possam cuidar da sua saúde mental.
 
 
+## 📋 Links
+
+- Link de demonstração do HealthHub
+  https://youtu.be/O7GUDpcSa6c
+
+- Link do Pitch:
+  https://youtu.be/jY8wkdMdGFA
+
+
 
 ## ✨ Funcionalidades Principais
 
@@ -129,3 +138,9 @@ https://healthhub-java.onrender.com
 4. **📈 Receba análise personalizada com recomendações**
 
 ```
+
+  
+
+  
+
+
