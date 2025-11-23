@@ -2,14 +2,18 @@
 FROM maven:3.9.6-eclipse-temurin-17 AS builder
 WORKDIR /app
 
-# Copia tudo
-COPY . .
+# Copia o pom.xml e baixa dependências antes (melhor cache)
+COPY pom.xml .
+RUN mvn dependency:go-offline -B
 
-# Build simples - YAML não tem os problemas de encoding do properties
+# Copia o restante do projeto
+COPY src ./src
+
+# Build da aplicação (gera o JAR)
 RUN mvn clean package -DskipTests
 
 # Etapa de execução com JDK 17
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:17-jdk
 WORKDIR /app
 
 # Cria usuário sem privilégios
@@ -20,5 +24,4 @@ USER appuser
 COPY --from=builder /app/target/*.jar app.jar
 
 EXPOSE 8080
-
 ENTRYPOINT ["java", "-jar", "app.jar"]
