@@ -114,6 +114,12 @@ https://healthhub-java.onrender.com
 → Clique em "Cadastrar" para criar sua conta
 → Ou "Fazer Login" se já possuir cadastro
 ````
+Exemplo de usuario para cadastro
+```bash
+nome: Juliano
+email: julianoGS@gmail.com
+senha: julianoP456@
+````
 ### 2. 💬 Chat Emocional - Passo a Passo
 ```bash
 1. 🔗 Clique em "Chat com IA" no menu superior
