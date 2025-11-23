@@ -3,6 +3,7 @@ package br.com.fiap.chatia.service;
 import com.google.genai.Client;
 import com.google.genai.types.GenerateContentResponse;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -22,7 +23,10 @@ public class ChatService {
         this.genaiClient = new Client();
     }
 
+    @Cacheable(value = "chatCache", key = "#mensagem")
     public String conversar(String mensagem) throws IOException {
+        System.out.println("=== GERANDO NOVA RESPOSTA DO CHAT (CACHE MISS) ===");
+        System.out.println("Mensagem: " + mensagem);
 
         String prompt = """
             Você é um assistente de apoio emocional.
@@ -38,6 +42,8 @@ public class ChatService {
                 null
         );
 
-        return response.text();
+        String resposta = response.text();
+        System.out.println("Resposta do chat gerada e armazenada em cache");
+        return resposta;
     }
 }
