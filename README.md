@@ -22,7 +22,7 @@
 
 O **HealthHub** é uma plataforma inovadora de suporte emocional e bem-estar que utiliza inteligência artificial para oferecer acolhimento e orientações personalizadas. Nosso objetivo é proporcionar um ambiente seguro e confidencial para que usuários possam cuidar da sua saúde mental.
 
----
+
 
 ## ✨ Funcionalidades Principais
 
@@ -49,9 +49,7 @@ O **HealthHub** é uma plataforma inovadora de suporte emocional e bem-estar que
 | ⚡ **Nível de Estresse** | Nenhum a Máximo |
 | 🏋️ **Sensação de Sobrecarga** | Controlável a Extrema |
 
----
 
----
 ## 🚀 Rodar Localmente
 
 ### Passos
@@ -86,14 +84,17 @@ Depois clique **OK**, **APPLY** e **RUN**
 4.Dentro do arquivo, altere o datasource, se necessário:
 
 ![image](https://github.com/user-attachments/assets/e2134110-0527-4bfb-a51a-964daa91b6a7)
----
+
 
 ## 🚀 Rodar pela nuvem Render
 ```bash
-
+https://healthhub-java.onrender.com
 ````
+- O deploy está usando meus dados do banco e API_KEY, então se quiser utilizar suas proprias informações utilize localmente como mostra acima.
+- Apenas entre no link e você será levado para a home da solução, aí pode utilizar do mesmo jeito que localmente
+- As intruções de como usar o HealthHub estão na sessão abaixo
 
----
+
 
 ## 🚀 Como Usar
 
