@@ -1,0 +1,77 @@
+# ============================
+# DATASOURCE (Oracle)
+# ============================
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@//oracle.fiap.com.br:1521/ORCL
+    username: ${db.user}
+    password: ${db.password}
+    driver-class-name: oracle.jdbc.OracleDriver
+
+  # ============================
+  # JPA / HIBERNATE
+  # ============================
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.OracleDialect
+    database-platform: org.hibernate.dialect.OracleDialect
+
+  # ============================
+  # THYMELEAF
+  # ============================
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    mode: HTML
+
+  # ============================
+  # GEMINI (Google AI)
+  # ============================
+  ai:
+    google:
+      ai:
+        key: ${GOOGLE_API_KEY}
+        chat:
+          options:
+            model: gemini-flash-latest
+  # Ou use: gemini-1.5-pro, gemini-1.0-pro
+
+  # ============================
+  # SERVIDOR
+  # ============================
+  # Configuração do Cache
+  cache:
+    type: simple
+    cache-names:
+      - questionarioCache
+      - chatCache
+    simple:
+      time-to-live: 1800000
+
+  # Internationalization com UTF-8
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+    fallback-to-system-locale: false
+    cache-duration: 3600
+
+  # Spring encoding
+  web:
+    locale: pt
+
+
+# ============================
+# SERVER
+# ============================
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
