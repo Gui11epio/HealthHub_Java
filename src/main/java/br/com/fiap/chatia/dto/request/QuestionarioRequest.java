@@ -1,7 +1,7 @@
 package br.com.fiap.chatia.dto.request;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 public class QuestionarioRequest {
     @Min(0) @Max(10)

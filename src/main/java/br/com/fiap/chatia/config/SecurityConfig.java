@@ -31,12 +31,13 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/auth/login", "/auth/register", "/css/**").permitAll()
+                        .requestMatchers("/", "/auth/login", "/auth/register",
+                                "/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
                         .loginPage("/auth/login")
-                        .defaultSuccessUrl("/questionario", true)
+                        .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
                 .logout(logout -> logout
@@ -46,4 +47,5 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 }

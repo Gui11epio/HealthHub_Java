@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultado - HealthHub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .result-card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .analysis-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 2rem;
+    }
+    .recommendation-card {
+      border-left: 4px solid #667eea;
+      background-color: #f8f9ff;
+      border-radius: 10px;
+    }
+    .btn-action {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      padding: 0.75rem 1.5rem;
+    }
+    .btn-action:hover {
+      color: white;
+      transform: translateY(-2px);
+      transition: transform 0.3s;
+    }
+    .result-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .analysis-text {
+      line-height: 1.8;
+      font-size: 1.1rem;
+      text-align: left;
+      white-space: pre-line;
+    }
+    .analysis-section h4 {
+      border-bottom: 2px solid rgba(255,255,255,0.3);
+      padding-bottom: 0.5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .analysis-section ul {
+      padding-left: 1.5rem;
+    }
+    .analysis-section li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+<!-- Header -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<!-- Result Section -->
+<section class="py-4">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-lg-8">
+        <!-- Cabeçalho -->
+        <div class="text-center mb-5">
+          <i class="fas fa-chart-pie result-icon text-primary"></i>
+          <h1 class="fw-bold">Análise do Seu Bem-estar</h1>
+          <p class="lead text-muted">
+            Com base nas suas respostas, aqui está sua análise personalizada
+          </p>
+        </div>
+
+        <!-- Card de Resultado -->
+        <div class="result-card p-4 mb-4">
+          <div class="analysis-section mb-4">
+            <div class="text-center">
+              <h3 class="fw-bold mb-3">
+                <i class="fas fa-robot me-2"></i>Análise da IA
+              </h3>
+              <div class="analysis-text" th:utext="${#strings.replace(#strings.replace(#strings.replace(#strings.replace(resultado.resultadoIA, '## ', '&lt;h4&gt;'), '---', '&lt;hr style=&quot;border-color: rgba(255,255,255,0.3); margin: 2rem 0;&quot;&gt;'), '* ', '&lt;li&gt;'), '#### ', '&lt;h5&gt;')}">
+                <!-- O resultado da IA será inserido aqui -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Recomendações -->
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="recommendation-card p-3 h-100">
+                <h5 class="fw-bold text-primary">
+                  <i class="fas fa-lightbulb me-2"></i>Próximos Passos
+                </h5>
+                <p class="mb-0">
+                  Considere implementar as sugestões da análise em sua rotina diária
+                  para melhorar seu bem-estar.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="recommendation-card p-3 h-100">
+                <h5 class="fw-bold text-primary">
+                  <i class="fas fa-calendar-check me-2"></i>Acompanhamento
+                </h5>
+                <p class="mb-0">
+                  Recomendamos refazer este questionário periodicamente
+                  para acompanhar sua evolução.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ações -->
+        <div class="text-center">
+          <div class="d-grid gap-2 d-md-flex justify-content-center">
+            <a th:href="@{/questionario}" class="btn btn-action me-md-2">
+              <i class="fas fa-redo me-2"></i>Refazer Questionário
+            </a>
+            <a th:href="@{/chat}" class="btn btn-outline-primary me-md-2">
+              <i class="fas fa-comments me-2"></i>Conversar com IA
+            </a>
+            <a th:href="@{/}" class="btn btn-outline-secondary">
+              <i class="fas fa-home me-2"></i>Voltar para Home
+            </a>
+          </div>
+        </div>
+
+        <!-- Aviso Importante -->
+        <div class="alert alert-warning mt-4" role="alert">
+          <h6 class="alert-heading">
+            <i class="fas fa-exclamation-triangle me-2"></i>Aviso Importante
+          </h6>
+          <p class="mb-0">
+            Esta análise é fornecida por uma inteligência artificial e não substitui
+            o diagnóstico ou tratamento de profissionais de saúde mental.
+            Se estiver enfrentando dificuldades significativas, procure ajuda profissional.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

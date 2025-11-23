@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Questionário de Bem-estar - HealthHub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .question-card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    .progress-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .btn-submit {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      padding: 0.75rem 2rem;
+      font-size: 1.1rem;
+    }
+    .btn-submit:hover {
+      color: white;
+      transform: translateY(-2px);
+      transition: transform 0.3s;
+    }
+    .question-icon {
+      font-size: 2rem;
+      color: #667eea;
+      margin-bottom: 1rem;
+    }
+    .number-input {
+      max-width: 150px;
+      margin: 0 auto;
+    }
+    .input-group-custom {
+      max-width: 200px;
+      margin: 0 auto;
+    }
+    .range-text {
+      font-size: 0.9rem;
+      color: #6c757d;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+<!-- Header -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<!-- Questionário Section -->
+<section class="py-4">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-lg-8">
+        <!-- Cabeçalho -->
+        <div class="text-center mb-5">
+          <i class="fas fa-clipboard-list question-icon"></i>
+          <h1 class="fw-bold">Questionário de Bem-estar</h1>
+          <p class="lead text-muted">
+            Responda as perguntas abaixo para receber uma análise personalizada
+            do seu estado emocional
+          </p>
+        </div>
+
+        <!-- Barra de Progresso -->
+        <div class="progress-section text-center">
+          <h5 class="fw-bold mb-3">
+            <i class="fas fa-chart-line me-2"></i>Análise do Seu Bem-estar
+          </h5>
+          <p class="mb-0">
+            Suas respostas nos ajudarão a entender melhor como você está se sentindo
+            e oferecer recomendações personalizadas
+          </p>
+        </div>
+
+        <!-- Formulário do Questionário -->
+        <form th:action="@{/questionario/analisar}" method="post">
+          <!-- Pergunta 1 - Ansiedade -->
+          <div class="question-card p-4">
+            <div class="d-flex align-items-start mb-3">
+              <span class="badge bg-primary me-3 mt-1">1</span>
+              <div>
+                <h5 class="fw-bold">
+                  <i class="fas fa-heartbeat me-2"></i>Nível de Ansiedade
+                </h5>
+                <p class="text-muted mb-0">
+                  Em uma escala de 0 a 10, como você classificaria seu nível de ansiedade hoje?
+                </p>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <div class="input-group-custom">
+                <input type="number"
+                       name="ansiedade"
+                       class="form-control form-control-lg text-center"
+                       min="0"
+                       max="10"
+                       value="0"
+                       required>
+                <div class="range-text">0 (Nenhuma) a 10 (Extrema)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pergunta 2 - Horas de Sono -->
+          <div class="question-card p-4">
+            <div class="d-flex align-items-start mb-3">
+              <span class="badge bg-primary me-3 mt-1">2</span>
+              <div>
+                <h5 class="fw-bold">
+                  <i class="fas fa-moon me-2"></i>Qualidade do Sono
+                </h5>
+                <p class="text-muted mb-0">
+                  Quantas horas você dormiu na última noite?
+                </p>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <div class="input-group-custom">
+                <input type="number"
+                       name="horasSono"
+                       class="form-control form-control-lg text-center"
+                       min="0"
+                       max="24"
+                       value="7"
+                       required>
+                <div class="range-text">Horas de sono (0-24)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pergunta 3 - Estresse -->
+          <div class="question-card p-4">
+            <div class="d-flex align-items-start mb-3">
+              <span class="badge bg-primary me-3 mt-1">3</span>
+              <div>
+                <h5 class="fw-bold">
+                  <i class="fas fa-brain me-2"></i>Nível de Estresse
+                </h5>
+                <p class="text-muted mb-0">
+                  Como você classificaria seu nível de estresse atualmente?
+                </p>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <div class="input-group-custom">
+                <input type="number"
+                       name="estresse"
+                       class="form-control form-control-lg text-center"
+                       min="0"
+                       max="10"
+                       value="0"
+                       required>
+                <div class="range-text">0 (Sem estresse) a 10 (Máximo)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pergunta 4 - Sobrecarga -->
+          <div class="question-card p-4">
+            <div class="d-flex align-items-start mb-3">
+              <span class="badge bg-primary me-3 mt-1">4</span>
+              <div>
+                <h5 class="fw-bold">
+                  <i class="fas fa-weight-hanging me-2"></i>Sensação de Sobrecarga
+                </h5>
+                <p class="text-muted mb-0">
+                  Você está se sentindo sobrecarregado com suas responsabilidades?
+                </p>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <div class="input-group-custom">
+                <input type="number"
+                       name="sobrecarga"
+                       class="form-control form-control-lg text-center"
+                       min="0"
+                       max="10"
+                       value="0"
+                       required>
+                <div class="range-text">0 (Controlável) a 10 (Extrema)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botão de Envio -->
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-submit btn-lg">
+              <i class="fas fa-chart-bar me-2"></i>Analisar Meu Bem-estar
+            </button>
+            <div class="mt-3">
+              <a th:href="@{/}" class="text-decoration-none">
+                <i class="fas fa-arrow-left me-1"></i>Voltar para Home
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Validação básica dos inputs
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const inputs = form.querySelectorAll('input[type="number"]');
+
+    inputs.forEach(input => {
+      input.addEventListener('change', function() {
+        const min = parseInt(this.getAttribute('min'));
+        const max = parseInt(this.getAttribute('max'));
+        const value = parseInt(this.value);
+
+        if (value < min) {
+          this.value = min;
+        } else if (value > max) {
+          this.value = max;
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
