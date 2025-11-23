@@ -9,11 +9,11 @@ RUN mvn dependency:go-offline -B
 # Copia o restante do projeto
 COPY src ./src
 
-# Build da aplicação (gera o JAR)
-RUN mvn clean package -DskipTests
+# Build SEM filtering - usa valores placeholder
+RUN mvn clean package -DskipTests -Dmaven.resources.filtering=false
 
 # Etapa de execução com JDK 17
-FROM eclipse-temurin:17-jdk
+FROM eclipse-temurin:17-jre
 WORKDIR /app
 
 # Cria usuário sem privilégios
@@ -24,4 +24,5 @@ USER appuser
 COPY --from=builder /app/target/*.jar app.jar
 
 EXPOSE 8080
+
 ENTRYPOINT ["java", "-jar", "app.jar"]
